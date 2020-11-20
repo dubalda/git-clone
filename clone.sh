@@ -3,7 +3,7 @@
 set -euo pipefail
 
 BRANCH=${GIT_BRANCH:-master}
-OUTPUT_DIR=${GIT_BRANCH:-/git}
+OUTPUT_DIR=${GIT_OUTPUT_DIR:-/git}
 
 if [ -z "${GIT_REPO_URL}" ]; then
   echo "Need to set \$GIT_REPO_URL"
