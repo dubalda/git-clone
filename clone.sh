@@ -25,10 +25,13 @@ if [ -z "${GIT_PASSWORD}" ]; then
 fi
 
 git config --global credential.${GIT_REPO_URL}.username ${GIT_USERNAME}
-git config --global core.askpass $(echo "${GIT_PASSWORD}")
+git config --global core.askpass $PWD/askpass.sh
 
 cd ${OUTPUT_DIR}
 
-echo "$(date '+%Y.%m.%d_%H.%M.%S') Clone branch ${BRANCH} from ${GIT_REPO_URL} to ${OUTPUT_DIR}"
-
-git clone --quiet -b ${BRANCH} --depth 1 $GIT_REPO_URL}
+git pull || {
+  echo "Clone branch ${BRANCH} from ${GIT_REPO_URL} to ${OUTPUT_DIR}"
+  shopt -s dotglob
+  rm -rf ${PWD}/*
+  git clone -b ${BRANCH} --depth 1 ${GIT_REPO_URL} .
+}

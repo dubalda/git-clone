@@ -11,6 +11,7 @@ RUN apt-get update && \
     apt-get clean
 
 ADD clone.sh .
+ADD askpass.sh .
 
 ENTRYPOINT ["/bin/bash", "clone.sh"]
 
