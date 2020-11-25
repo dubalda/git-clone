@@ -35,3 +35,5 @@ git pull || {
   rm -rf ${PWD}/*
   git clone -b ${BRANCH} --depth 1 ${GIT_REPO_URL} .
 }
+
+echo "Branch $(git branch 2>/dev/null | grep '^*'), commit $(git rev-parse --short HEAD)"
